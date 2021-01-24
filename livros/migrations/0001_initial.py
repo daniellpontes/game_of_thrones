@@ -29,20 +29,6 @@ class Migration(migrations.Migration):
             },
         ),
         migrations.CreateModel(
-            name='Capitulos',
-            fields=[
-                ('id_capitulo', models.AutoField(primary_key=True, serialize=False)),
-                ('num_capitulo', models.IntegerField()),
-                ('nome_capitulo', models.CharField(blank=True, max_length=30, null=True)),
-                ('pagina_inicio', models.IntegerField()),
-                ('pagina_termino', models.IntegerField()),
-            ],
-            options={
-                'db_table': 'livros"."Capitulos',
-                'ordering': ['num_capitulo'],
-            },
-        ),
-        migrations.CreateModel(
             name='Editoras',
             fields=[
                 ('id_editora', models.AutoField(primary_key=True, serialize=False)),
@@ -74,6 +60,21 @@ class Migration(migrations.Migration):
             },
         ),
         migrations.CreateModel(
+            name='Capitulos',
+            fields=[
+                ('id_capitulo', models.AutoField(primary_key=True, serialize=False)),
+                ('id_livro', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='livros.Livros')),
+                ('num_capitulo', models.IntegerField()),
+                ('nome_capitulo', models.CharField(blank=True, max_length=30, null=True)),
+                ('pagina_inicio', models.IntegerField()),
+                ('pagina_termino', models.IntegerField()),
+            ],
+            options={
+                'db_table': 'livros"."Capitulos',
+                'ordering': ['num_capitulo'],
+            },
+        ),
+        migrations.CreateModel(
             name='Eventos',
             fields=[
                 ('id_evento', models.AutoField(primary_key=True, serialize=False)),
@@ -85,10 +86,5 @@ class Migration(migrations.Migration):
                 'db_table': 'livros"."Eventos',
                 'ordering': ['id_evento'],
             },
-        ),
-        migrations.AddField(
-            model_name='capitulos',
-            name='id_livro',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='livros.Livros'),
         ),
     ]
