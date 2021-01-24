@@ -1,0 +1,8 @@
+db.sqlite3
+db.sqlite3-journal
+midia/
+migrations/
+__pycache__/
+*.idea
+*pyc
+.env
