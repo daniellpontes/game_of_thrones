@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block titulo %} Login {% endblock %}
+
+{% block login %}
+        <div class="page login-page">
+            <div class="container d-flex align-items-center">
+                <div class="form-holder has-shadow">
+                    <div class="row">
+                    <!-- Logo & Information Panel-->
+                        <div class="col-lg-6">
+                            <div class="info d-flex align-items-center">
+                                <div class="content">
+                                    <div class="logo">
+                                    <h1>Game of Thrones</h1>
+                                    </div>
+                                <p>O sistema que registra a estória do livro.</p>
+                                </div>
+                            </div>
+                        </div>
+                    <!-- Form Panel    -->
+                        <div class="col-lg-6 bg-white">
+                            <div class="form d-flex align-items-center">
+                                <div class="content">
+                                    <form method="post" class="form-validate">
+                                        {% csrf_token %}
+                                        <div class="form-group">
+                                            <input id="id_username" type="text" name="username" required data-msg="Informe o seu usuário" class="input-material">
+                                            <label for="id_username" class="label-material">Usuário</label>
+                                        </div>
+                                        <div class="form-group">
+                                            <input id="id_password" type="password" name="password" required data-msg="Informe a sua senha" class="input-material">
+                                            <label for="id_password" class="label-material">Senha</label>
+                                        </div>
+                                        <button type="submit" class="btn btn-primary">Logar</button>
+                                    </form>
+                                    <a href="#" class="forgot-pass">Esqueceu a senha?</a><br>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+{% endblock %}

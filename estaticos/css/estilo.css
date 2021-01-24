@@ -1,0 +1,16 @@
+body{
+    font-family: Raleway;
+}
+button{
+    margin-left: 5px;
+}
+.centraliza {
+        margin: 0 auto; /* Added */
+        float: none; /* Added */
+        margin-bottom: 10px; /* Added */
+}
+.card-close {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+}

@@ -1,0 +1,48 @@
+{% load static %}
+{% get_media_prefix as MEDIA_URL %}
+<!doctype html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport"
+              content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <link rel="stylesheet" href="{% static 'outros/font-awesome/css/font-awesome.min.css' %}">
+        <link rel="stylesheet" href="{% static 'css/sticky-footer.css' %}">
+        <link rel="stylesheet" href="{% static 'css/style.default.css' %}" id="theme-stylesheet">
+        <link rel="stylesheet" href="{% static 'css/estilo.css' %}">
+        <!--<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>-->
+        <script src="{% static 'outros/jquery/jquery.min.js' %}"></script>
+        <script src="{% static 'outros/popper/umd/popper.min.js' %}"> </script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+        <script src="{% static 'outros/vendor/jquery.cookie/jquery.cookie.js' %}"> </script>
+        <script src="{% static 'outros/vendor/chart.js/Chart.min.js' %}"></script>
+        <script src="{% static 'outros/vendor/jquery-validation/jquery.validate.min.js' %}"></script>
+
+        <script src="{% static 'outros/js/front.js' %}"></script>
+
+        <title>{% block titulo %} {% endblock %}</title>
+        <script>
+            $(function () {
+              $('[data-toggle="tooltip"]').tooltip()
+            })
+        </script>
+    </head>
+    <body>
+        {% block login %} {% endblock %}
+        <div class="page">
+            {% block cabecalho %} {% endblock %}
+
+            <div class="page-content d-flex align-items-stretch">
+                {% block sidebar %} {% endblock %}
+
+                {% block principal %} {% endblock %}
+
+                {% block rodape %} {% endblock %}
+
+            </div>
+        </div>
+    </body>
+</html>
