@@ -1,0 +1,70 @@
+{% extends 'index.html' %}
+{% load bootstrap %}
+{% load widget_tweaks %}
+
+{% block titulo %}
+    Cadastra personagem
+{% endblock %}
+
+{% block principal %}
+<div class="content-inner">
+    <div class="breadcrumb-holder container-fluid">
+        <ul class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{% url 'principal_url' %}">Home</a></li>
+            <li class="breadcrumb-item"><a href="{% url 'lista_personagens_url' %}">Personagens</a></li>
+            <li class="breadcrumb-item active">Cadastra</li>
+        </ul>
+    </div>
+    <section class="forms">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-10 centraliza">
+                    <div class="card">
+                        <div class="card-header d-flex align-items-center bg-dark text-light">
+                            <h3 class="h4">Cadastra personagem</h3>
+                        </div>
+                        <div class="card-body">
+                            <form method="post" enctype="multipart/form-data">
+                                {% csrf_token %}
+                                <div class="form-group row">
+                                    <label class="col-sm-2 form-control-label" for="{{ formulario.nome.id_for_label }}">Nome</label>
+                                    <div class="col-sm-4">
+                                        {{ formulario.nome|attr:"class:form-control"|attr:"autofocus"|attr:"required" }}
+                                    </div>
+
+                                    <label class="col-sm-2 form-control-label" for="{{ formulario.sobrenome.id_for_label }}">Sobrenome</label>
+                                    <div class="col-sm-4">
+                                        {{ formulario.sobrenome|attr:"class:form-control"|attr:"required"}}
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-sm-2 form-control-label" for="{{ formulario.apelido.id_for_label }}">Apelido</label>
+                                    <div class="col-sm-4">
+                                        {{ formulario.apelido|attr:"class:form-control"|attr:"required"}}
+                                    </div>
+                                    <label class="col-sm-2 form-control-label" for="{{ formulario.idade.id_for_label }}">Idade</label>
+                                    <div class="col-sm-4">
+                                        {{ formulario.idade|attr:"class:form-control"|attr:"required"}}
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-sm-2 form-control-label" for="{{ formulario.especie.id_for_label }}">Espécie</label>
+                                    <div class="col-sm-4">
+                                        {{ formulario.especie|attr:"class:form-control"|attr:"required"}}
+                                    </div>
+                                </div>
+
+                                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                                  <button class="btn btn-danger me-md-2" type="reset">Cancelar</button>
+                                  <button class="btn btn-primary" type="submit">Cadastrar</button>
+                                </div>
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+{% endblock %}

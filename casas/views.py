@@ -27,7 +27,7 @@ def cadastra_casa(request):
     if formulario.is_valid():
         # Verifica se o formulário é válido e o salva, transformando-o em um objeto.
         formulario.save()
-        messages.success(request, 'Casa cadastrada com suncesso.')
+        messages.success(request, 'Casa cadastrada com sucesso.')
         return redirect('lista_casas_url')
     return render(request, 'cadastra_casa.html', {'formulario': formulario})
     # Renderiza o template com o conteúdo da variável formulário

@@ -1,0 +1,129 @@
+{% extends 'index.html' %}
+
+{% block titulo %}
+    Lista personagens
+{% endblock %}
+
+
+{% block principal %}
+<div class="content-inner">
+    <div class="breadcrumb-holder container-fluid">
+        <ul class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{% url 'principal_url' %}">Home</a></li>
+            <li class="breadcrumb-item active">Personagens</li>
+        </ul>
+    </div>
+
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                {{ message }}    
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">&times;</button>
+            </div>
+        {% endfor %}
+    {% endif %}
+
+    <section class="tables">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-10 centraliza">
+                    <div class="card">
+                        <div class="card-close">
+                            <div class="dropdown">
+                                <a class="btn btn-light btn-sm" href="{% url 'cadastra_personagem_url' %}"
+                                   data-toggle="tooltip" data-placement="top" title="Cadastrar personagem">
+                                    <i class="fa fa-plus"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="card-header d-flex align-items-center bg-dark text-light">
+                            <h3 class="h4">Personagens</h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-striped table-hover">
+                                    <thead>
+                                        <tr class="text-center">
+                                            <th>#</th>
+                                            <th>Nome</th>
+                                            <th>Sobrenome</th>
+                                            <th>Apelido</th>
+                                            <th>Itens</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for personagem in personagens %}
+                                            <tr class="text-center">
+                                                <td>{{ forloop.counter }}</td>
+                                                <td class="text-left">{{ personagem.nome }}</td>
+                                                <td class="text-left">{{ personagem.sobrenome }}</td>
+                                                <td class="text-left">{{ personagem.apelido }}</td>
+                                                <td>
+                                                    <a class="btn btn-dark btn-sm" href="#"
+                                                       data-toggle="tooltip" data-placement="top" title="Edita personagem">
+                                                        <i class="fa fa-pencil"></i>
+                                                    </a>
+
+                                                    <a class="btn btn-danger btn-sm" title="Exclui personagem" data-toggle="modal" data-target="#confirmDeleteModal" data-placement="top" data-tt="tooltip"
+                                                       onClick="abre_modal('#confirmDeleteModal', {{ personagem.id_personagem }}, '{{ personagem.nome }}');" 
+                                                        href="#">
+                                                        <i class="fa fa-trash"></i>
+                                                    </a>
+                                                    <a class="btn btn-info btn-sm" href="#"
+                                                       data-toggle="tooltip" data-placement="top" title="Membros">
+                                                        <i class="fa fa-users"></i>
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        {% endfor %}
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="confirmDeleteModal">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h4 class="modal-title">Excluir casa</h4>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">&times;</button>
+                                                </div>
+
+                                                <div class="modal-body" id="corpo_modal">
+                                                </div>
+
+                                                <div class="modal-footer" id="form_modal">
+                                                    <form action="#" method="POST" enctype="multipart/form-data">
+                                                        {% csrf_token %}
+                                                        <input type="hidden" id="id_casa" name="id_casa" value="">
+                                                        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                                                        <button type="submit" class="btn btn-primary" >Excluir</button>
+                                                    
+                                                    </form>
+                                                    
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <script>
+                                        $("[data-tt=tooltip]").tooltip();
+                                        /*↑ habilita que o <a> chame o modal e exiba o tooltip. */
+                                        $(document).ready()
+                                        {	
+                                            function abre_modal (modal,id_casa, nome_casa)
+                                                {
+                                                    document.getElementById('corpo_modal').innerHTML = 'Deseja excluir ' + nome_casa + '?';
+                                                    document.getElementById('id_casa').setAttribute("value", id_casa);
+                                                }
+                                        }
+                                    </script>
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+{% endblock %}
+
