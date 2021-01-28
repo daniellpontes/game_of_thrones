@@ -3,7 +3,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from .models import Casas, Membros
-from .forms import CasaForm
+from .forms import CasaForm, MembroCasaForm
 
 
 @login_required
@@ -31,6 +31,18 @@ def cadastra_casa(request):
         return redirect('lista_casas_url')
     return render(request, 'cadastra_casa.html', {'formulario': formulario})
     # Renderiza o template com o conteúdo da variável formulário
+
+@login_required
+def cadastra_membro(request, id_casa):
+    formulario = MembroCasaForm(request.POST or None, request.FILES or None)
+    casa = Casas.objects.get(pk=id_casa)
+    if formulario.is_valid():
+        instance = formulario.save(commit=False)
+        instance.id_casa = casa
+        instance.save()
+        messages.success(request, 'Membro adicionado com sucesso.')
+        return redirect('lista_membros_url', id_casa=id_casa)
+    return render (request, 'cadastra_membro.html', {'formulario': formulario, 'casa': casa})
 
 
 @login_required

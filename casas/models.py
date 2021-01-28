@@ -7,7 +7,8 @@ papel_casa = [
     ('Rainha', 'Rainha'),
     ('Príncipe herdeiro', 'Príncipe herdeiro'),
     ('Príncipe', 'Príncipe'),
-    ('Princesa', 'Princesa')
+    ('Princesa', 'Princesa'),
+    ('Sem papel definido', 'Sem papel definido')
 ]
 
 

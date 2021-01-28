@@ -14,6 +14,14 @@
             <li class="breadcrumb-item active">Membros</li>
         </ul>
     </div>
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                {{ message }}    
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">&times;</button>
+            </div>
+        {% endfor %}
+    {% endif %}
     <section class="tables">
         <div class="container-fluid">
             <div class="row">
@@ -21,7 +29,7 @@
                     <div class="card">
                         <div class="card-close">
                             <div class="dropdown">
-                                <a class="btn btn-light btn-sm" href="#"
+                                <a class="btn btn-light btn-sm" href="{% url 'cadastra_membro_url' casa.id_casa %}"
                                    data-toggle="tooltip" data-placement="top" title="Adicionar membro">
                                     <i class="fa fa-plus"></i>
                                 </a>
