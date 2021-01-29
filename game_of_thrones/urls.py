@@ -20,6 +20,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 from .views import index
 from casas import urls as casas_urls
+from livros import urls as livros_urls
 from personagens import urls as personagens_urls
 
 
@@ -30,5 +31,6 @@ urlpatterns = [
     path('index/', index, name='principal_url'),
     path('admin/', admin.site.urls),
     path('casas/', include(casas_urls)),
+    path('livros/', include(livros_urls)),
     path('personagens/', include(personagens_urls))
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

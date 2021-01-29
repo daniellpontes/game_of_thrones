@@ -35,7 +35,7 @@ class Personagens(models.Model):
         nick = '-'
         if self.apelido:
             nick = self.apelido
-        return str(self.nome) + ' (' + str(nick) + ')'
+        return str(self.nome) + ' ' + str(self.sobrenome)+ ' (' + str(nick) + ')'
 
 
 class TpCaracteristica(models.Model):

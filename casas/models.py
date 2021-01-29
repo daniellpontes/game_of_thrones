@@ -33,7 +33,7 @@ class Membros(models.Model):
     papel_casa = models.CharField(max_length=50, null=True, blank=True, choices=papel_casa)
 
     class Meta:
-        ordering = ['id_membro']
+        ordering = ['id_personagem__nome']
         db_table = 'casas\".\"Membros'
 
     def __str__(self):
