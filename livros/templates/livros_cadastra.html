@@ -1,0 +1,82 @@
+{% extends 'index.html' %}
+{% load bootstrap %}
+{% load widget_tweaks %}
+
+{% block titulo %}
+    Cadastra livro
+{% endblock %}
+
+{% block principal %}
+<div class="content-inner">
+    <div class="breadcrumb-holder container-fluid">
+        <ul class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{% url 'principal_url' %}">Home</a></li>
+            <li class="breadcrumb-item"><a href="{% url 'url_livros_lista' %}">Livros</a></li>
+            <li class="breadcrumb-item active">Cadastra</li>
+        </ul>
+    </div>
+    <section class="forms">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-10 centraliza">
+                    <div class="card">
+                        <div class="card-header d-flex align-items-center bg-dark text-light">
+                            <h3 class="h4">Cadastra livro</h3>
+                        </div>
+                        <div class="card-body">
+                            <form method="post" enctype="multipart/form-data">
+                                {% csrf_token %}
+                                <div class="form-group row">
+                                    <label class="col-sm-2 form-control-label" for="{{ formulario.id_editora.id_for_label }}">Editora</label>
+                                    <div class="col-sm-4">
+                                        {{ formulario.id_editora|attr:"class:form-control"|attr:"autofocus"|attr:"required" }}
+                                    </div>
+
+                                    <label class="col-sm-2 form-control-label" for="{{ formulario.id_autor.id_for_label }}">Autor</label>
+                                    <div class="col-sm-4">
+                                        {{ formulario.id_autor|attr:"class:form-control"|attr:"required"}}
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-sm-2 form-control-label" for="{{ formulario.titulo.id_for_label }}">Título</label>
+                                    <div class="col-sm-10">
+                                        {{ formulario.titulo|attr:"class:form-control"|attr:"required"}}
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-sm-2 form-control-label" for="{{ formulario.isbn.id_for_label }}">ISBN</label>
+                                    <div class="col-sm-4">
+                                        {{ formulario.isbn|attr:"class:form-control"|attr:"required"}}
+                                    </div>
+
+                                    <label class="col-sm-2 form-control-label" for="{{ formulario.num_paginas.id_for_label }}">Páginas</label>
+                                    <div class="col-sm-4">
+                                        {{ formulario.num_paginas|attr:"class:form-control"|attr:"required"}}
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-sm-2 form-control-label" for="{{ formulario.edicao_numero.id_for_label }}">Número da edição</label>
+                                    <div class="col-sm-4">
+                                        {{ formulario.edicao_numero|attr:"class:form-control"|attr:"required"}}
+                                    </div>
+
+                                    <label class="col-sm-2 form-control-label" for="{{ formulario.edicao_ano.id_for_label }}">Ano da edição</label>
+                                    <div class="col-sm-4">
+                                        {{ formulario.edicao_ano|attr:"class:form-control"|attr:"required"}}
+                                    </div>
+                                </div>
+
+                                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                                  <button class="btn btn-danger me-md-2" type="reset">Cancelar</button>
+                                  <button class="btn btn-primary" type="submit">Cadastrar</button>
+                                </div>
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+{% endblock %}

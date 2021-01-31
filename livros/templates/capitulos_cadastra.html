@@ -1,0 +1,68 @@
+{% extends 'index.html' %}
+{% load bootstrap %}
+{% load widget_tweaks %}
+
+{% block titulo %}
+    {{ livro.titulo}} - Cadastra capítulo
+{% endblock %}
+
+{% block principal %}
+<div class="content-inner">
+    <div class="breadcrumb-holder container-fluid">
+        <ul class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{% url 'principal_url' %}">Home</a></li>
+            <li class="breadcrumb-item"><a href="{% url 'url_livros_lista' %}">Livros</a></li>
+            <li class="breadcrumb-item"><a href="#">{{ livro.titulo }}</a></li>
+            <li class="breadcrumb-item"><a href="{% url 'url_capitulos_lista' livro.id_livro %}">Capítulos</a></li>
+            <li class="breadcrumb-item active">Cadastra</li>
+        </ul>
+    </div>
+    <section class="forms">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-10 centraliza">
+                    <div class="card">
+                        <div class="card-header d-flex align-items-center bg-dark text-light">
+                            <h3 class="h4">{{ livro.titulo}} - Cadastra capítulo</h3>
+                        </div>
+                        <div class="card-body">
+                            <form method="post" enctype="multipart/form-data">
+                                {% csrf_token %}
+                                <div class="form-group row">
+                                    <label class="col-sm-2 form-control-label" for="{{ formulario.num_capitulo.id_for_label }}">Número</label>
+                                    <div class="col-sm-2">
+                                        {{ formulario.num_capitulo|attr:"class:form-control"|attr:"autofocus"|attr:"required" }}
+                                    </div>
+
+                                    <label class="col-sm-2 form-control-label" for="{{ formulario.pagina_inicio.id_for_label }}">Início</label>
+                                    <div class="col-sm-2">
+                                        {{ formulario.pagina_inicio|attr:"class:form-control"|attr:"required" }}
+                                    </div>
+
+                                    <label class="col-sm-2 form-control-label" for="{{ formulario.pagina_termino.id_for_label }}">Término</label>
+                                    <div class="col-sm-2">
+                                        {{ formulario.pagina_termino|attr:"class:form-control"|attr:"required" }}
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-sm-2 form-control-label" for="{{ formulario.nome_capitulo.id_for_label }}">Título</label>
+                                    <div class="col-sm-10">
+                                        {{ formulario.nome_capitulo|attr:"class:form-control"|attr:"required"}}
+                                        <input type="hidden" name="id_livro" value="{{ livro.id_livro }}">
+                                    </div>
+                                </div>
+
+                                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                                  <button class="btn btn-danger me-md-2" type="reset">Cancelar</button>
+                                  <button class="btn btn-primary" type="submit">Cadastrar</button>
+                                </div>
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+{% endblock %}
