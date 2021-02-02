@@ -28,6 +28,7 @@ urlpatterns = [
     path('login/', auth_views.LoginView.as_view(), name='login_url'),
     path('logout/', auth_views.LogoutView.as_view(), name='logout_url'),
     path('', auth_views.LoginView.as_view()),
+    path('accounts/', include('allauth.urls')),
     path('index/', index, name='principal_url'),
     path('admin/', admin.site.urls),
     path('casas/', include(casas_urls)),
