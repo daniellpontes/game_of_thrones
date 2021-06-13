@@ -86,7 +86,7 @@ WSGI_APPLICATION = 'game_of_thrones.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
-"""
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
@@ -97,11 +97,11 @@ DATABASES = {
         'PORT': '5432',
     }
 }
-"""
 
-default_dburl = 'sqlite:///' + os.path.join(BASE_DIR, 'db.sqlite3')
 
-DATABASES = { 'default': config('DATABASE_URL', default=default_dburl, cast=dburl), }
+# default_dburl = 'sqlite:///' + os.path.join(BASE_DIR, 'db.sqlite3')
+
+# DATABASES = { 'default': config('DATABASE_URL', default=default_dburl, cast=dburl), }
 
 
 # Password validation
